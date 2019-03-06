@@ -1,0 +1,19 @@
+{
+  "name": "thorin-plugin-cluster-nats",
+  "author": "UNLOQ Systems",
+  "version": "1.0.0",
+  "dependencies": {
+    "nats": "1.2.x"
+  },
+  "description": "Thorin.js cluster plugin using nats.io",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thorinjs/Thorin-plugin-cluster-nats"
+  },
+  "homepage": "http://thorinjs.com",
+  "bugs": {
+    "url": "https://github.com/Thorinjs/Thorin-plugin-cluster-nats/issues"
+  }
+}

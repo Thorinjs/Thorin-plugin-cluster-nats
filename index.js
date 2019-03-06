@@ -30,13 +30,13 @@ module.exports = function (thorin, opt, pluginName) {
     opt.url = [opt.url];
   }
   if (!(opt.url instanceof Array)) {
-    throw thorin.error('PLUGIN.CLUSTER', 'URL Configuration must be an array of nats server URLs');
+    throw thorin.error('CLUSTER.CONFIG', 'URL Configuration must be an array of nats server URLs');
   }
   // Validate URLs as array of "nats://ip:port"]
   for (let i = 0; i < opt.url.length; i++) {
     let u = opt.url[i];
     if (typeof u !== 'string' || !u) {
-      throw thorin.error('PLUGIN.NATS', 'URL Configuration must be an array of nats server URLs');
+      throw thorin.error('CLUSTER.CONFIG', 'URL Configuration must be an array of nats server URLs');
     }
     if (u.indexOf('://') === -1) u = 'nats://' + u;
     if (u.lastIndexOf(':') !== 5) {
@@ -44,7 +44,9 @@ module.exports = function (thorin, opt, pluginName) {
     }
     opt.url[i] = u;
   }
-
+  if (opt.url.length === 0) {
+    throw thorin.error('CLUSTER.CONFIG', 'At least one Nats server URL is required');
+  }
   const pluginObj = initClient(thorin, opt, logger);
   initTransport(thorin, opt, pluginObj);
   return pluginObj;
